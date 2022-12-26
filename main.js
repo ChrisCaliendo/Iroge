@@ -28,7 +28,7 @@ const material = new THREE.MeshBasicMaterial({
 const torus = new THREE.Mesh(geometry, material);
 scene.add(torus);
 
-// VVV This secion must always be at the end VVV
+// VVV These secions must always be at the end VVV
 function animate(){
   requestAnimationFrame(animate);
   torus.rotation.x += 0.01;
@@ -37,3 +37,12 @@ function animate(){
   renderer.render(scene, camera);
 }
 animate();
+
+function reestablishView() {
+  //window.alert();
+  camera.aspect = window.innerWidth / window.innerHeight;
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.render(scene, camera);
+};
+window.addEventListener('resize', reestablishView);
